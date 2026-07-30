@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Для Руслана ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{background:#05060d;color:#fff;overflow:hidden}
+#bg{position:fixed;inset:0;background:radial-gradient(circle at top,#1d2148,#05060d 60%)}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.8;animation:twinkle 3s infinite alternate}
+@keyframes twinkle{to{opacity:.2;transform:scale(.6)}}
+.wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:100vh;padding:20px}
+.card{max-width:760px;width:100%;background:rgba(255,255,255,.08);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.15);border-radius:28px;padding:32px;text-align:center}
+button{margin-top:24px;padding:14px 28px;border:none;border-radius:999px;background:#ff4f88;color:#fff;font-size:18px;cursor:pointer}
+#msg{display:none;white-space:pre-wrap;text-align:left;line-height:1.8;min-height:420px}
+#gift{display:none;font-size:82px;cursor:pointer;margin-top:20px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.1)}}
+.heart{position:fixed;top:-30px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div class="wrap">
+<div class="card" id="card">
+<div id="start">
+<h1>Для Руслана ❤️</h1><br>
+<p style="font-size:20px">Иногда самые важные слова хочется не просто сказать, а сохранить.</p>
+<button onclick="begin()">Открыть 💌</button>
+</div>
+<div id="msg"></div>
+<div id="gift" onclick="finish()">🎁</div>
+</div>
+</div>
+<script>
+for(let i=0;i<180;i++){
+ let s=document.createElement('div');
+ s.className='star';
+ let r=Math.random()*3+1;
+ s.style.width=r+'px';s.style.height=r+'px';
+ s.style.left=Math.random()*100+'vw';
+ s.style.top=Math.random()*100+'vh';
+ s.style.animationDelay=Math.random()*3+'s';
+ document.getElementById('bg').appendChild(s);
+}
+const text=`Привет.
+
+Наверное, ты ожидал увидеть что угодно, но только не это.
+
+Я не умею дарить идеальные подарки.
+Но я умею вкладывать в них частичку себя.
+
+Поэтому сегодня я решил подарить тебе не вещь.
+
+А эмоцию.
+
+Может быть, когда-нибудь этот сайт случайно найдётся снова, и ты улыбнёшься, вспомнив этот момент.
+
+Спасибо тебе за всё.
+За время.
+За поддержку.
+За искренность.
+За то, что рядом со мной есть именно ты.
+
+Ты стал человеком, о котором хочется заботиться, которого хочется радовать и который занимает особенное место в моём сердце.
+
+И если бы меня спросили, что я хочу пожелать тебе прямо сейчас, ответ был бы очень простым.
+
+Чтобы ты чаще улыбался.
+
+Чтобы чувствовал себя любимым.
+
+Чтобы никогда не забывал, насколько ты ценен.
+
+И чтобы, когда тебе станет тяжело, ты помнил:
+где-то есть человек,
+который очень хочет видеть тебя счастливым.
+
+Спасибо, что дочитал до конца этого маленького путешествия.
+
+Нажми на подарок ниже.`;
+function begin(){
+start.style.display='none';
+msg.style.display='block';
+let i=0;
+let t=setInterval(()=>{
+msg.textContent+=text[i++];
+msg.scrollTop=msg.scrollHeight;
+if(i>=text.length){clearInterval(t);gift.style.display='block';}
+},30);
+}
+function finish(){
+card.innerHTML='<h1 style="font-size:60px">❤️</h1><h2 style="margin:20px 0">Спасибо, что ты есть в моей жизни.</h2><p style="font-size:24px">С любовью,<br>Валера</p>';
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='heart';
+h.textContent='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.fontSize=(18+Math.random()*24)+'px';
+h.style.animationDuration=(3+Math.random()*3)+'s';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
+},120);
+}
+</script>
+</body>
+</html>
